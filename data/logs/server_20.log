@@ -1,0 +1,150 @@
+[2026-10-21T10:20:01.202Z] [INFO] /api/v2/analytics/track status=200 latency=81ms - Request handled successfully endpoint=/api/v2/analytics/track
+[2026-10-21T10:20:02.783Z] [INFO] /api/v1/users/profile status=404 latency=448ms - Request handled successfully endpoint=/api/v1/users/profile
+[2026-10-21T10:20:03.328Z] [INFO] /api/v2/analytics/track status=200 latency=249ms - Request handled successfully endpoint=/api/v2/analytics/track
+[2026-10-21T10:20:04.300Z] [ERROR] /api/v2/analytics/track status=500 latency=733ms - Internal server exception during processing endpoint=/api/v2/analytics/track trace_id=tx-20-4
+[2026-10-21T10:20:05.912Z] [INFO] /api/v2/analytics/track status=200 latency=825ms - Request handled successfully endpoint=/api/v2/analytics/track
+[2026-10-21T10:20:06.107Z] [INFO] /api/v2/inventory/check status=400 latency=1054ms - Request handled successfully endpoint=/api/v2/inventory/check
+[2026-10-21T10:20:07.390Z] [INFO] /api/v1/users/profile status=404 latency=556ms - Request handled successfully endpoint=/api/v1/users/profile
+[2026-10-21T10:20:08.414Z] [INFO] /api/v1/notifications/push status=201 latency=23ms - Request handled successfully endpoint=/api/v1/notifications/push
+[2026-10-21T10:20:09.524Z] [INFO] /api/v1/auth/login status=200 latency=329ms - Request handled successfully endpoint=/api/v1/auth/login
+[2026-10-21T10:20:10.909Z] [WARN] /api/v2/inventory/check status=401 latency=1077ms - Client rate limit or auth challenge at endpoint=/api/v2/inventory/check
+[2026-10-21T10:20:11.939Z] [INFO] /api/v2/webhooks/stripe status=200 latency=364ms - Request handled successfully endpoint=/api/v2/webhooks/stripe
+[2026-10-21T10:20:12.685Z] [INFO] /api/v1/notifications/push status=200 latency=816ms - Request handled successfully endpoint=/api/v1/notifications/push
+[2026-10-21T10:20:13.297Z] [INFO] /api/v2/webhooks/stripe status=200 latency=120ms - Request handled successfully endpoint=/api/v2/webhooks/stripe
+[2026-10-21T10:20:14.920Z] [INFO] /api/v2/webhooks/stripe status=200 latency=814ms - Request handled successfully endpoint=/api/v2/webhooks/stripe
+[2026-10-21T10:20:15.845Z] [INFO] /api/v2/payments/charge status=200 latency=666ms - Request handled successfully endpoint=/api/v2/payments/charge
+[2026-10-21T10:20:16.629Z] [INFO] /api/v2/payments/charge status=200 latency=218ms - Request handled successfully endpoint=/api/v2/payments/charge
+[2026-10-21T10:20:17.827Z] [INFO] /api/v2/payments/charge status=200 latency=1196ms - Request handled successfully endpoint=/api/v2/payments/charge
+[2026-10-21T10:20:18.903Z] [WARN] /api/v1/notifications/push status=401 latency=547ms - Client rate limit or auth challenge at endpoint=/api/v1/notifications/push
+[2026-10-21T10:20:19.957Z] [INFO] /api/v1/reports/export status=200 latency=675ms - Request handled successfully endpoint=/api/v1/reports/export
+[2026-10-21T10:20:20.308Z] [INFO] /api/v1/auth/refresh status=200 latency=910ms - Request handled successfully endpoint=/api/v1/auth/refresh
+[2026-10-21T10:20:21.111Z] [INFO] /api/v2/webhooks/stripe status=200 latency=1128ms - Request handled successfully endpoint=/api/v2/webhooks/stripe
+[2026-10-21T10:20:22.180Z] [INFO] /api/v2/webhooks/stripe status=200 latency=282ms - Request handled successfully endpoint=/api/v2/webhooks/stripe
+[2026-10-21T10:20:23.564Z] [INFO] /api/v2/inventory/check status=200 latency=469ms - Request handled successfully endpoint=/api/v2/inventory/check
+[2026-10-21T10:20:24.404Z] [INFO] /api/v2/orders/create status=200 latency=517ms - Request handled successfully endpoint=/api/v2/orders/create
+[2026-10-21T10:20:25.843Z] [INFO] /api/v1/notifications/push status=400 latency=120ms - Request handled successfully endpoint=/api/v1/notifications/push
+[2026-10-21T10:20:26.381Z] [ERROR] /api/v1/auth/refresh status=500 latency=62ms - Internal server exception during processing endpoint=/api/v1/auth/refresh trace_id=tx-20-26
+[2026-10-21T10:20:27.753Z] [INFO] /api/v2/webhooks/stripe status=404 latency=242ms - Request handled successfully endpoint=/api/v2/webhooks/stripe
+[2026-10-21T10:20:28.570Z] [INFO] /api/v2/webhooks/stripe status=200 latency=305ms - Request handled successfully endpoint=/api/v2/webhooks/stripe
+[2026-10-21T10:20:29.389Z] [WARN] /api/v1/users/profile status=429 latency=205ms - Client rate limit or auth challenge at endpoint=/api/v1/users/profile
+[2026-10-21T10:20:30.179Z] [WARN] /api/v2/analytics/track status=401 latency=440ms - Client rate limit or auth challenge at endpoint=/api/v2/analytics/track
+[2026-10-21T10:20:31.500Z] [INFO] /api/v1/auth/refresh status=200 latency=59ms - Request handled successfully endpoint=/api/v1/auth/refresh
+[2026-10-21T10:20:32.523Z] [INFO] /api/v1/auth/refresh status=200 latency=171ms - Request handled successfully endpoint=/api/v1/auth/refresh
+[2026-10-21T10:20:33.315Z] [INFO] /api/v1/notifications/push status=200 latency=657ms - Request handled successfully endpoint=/api/v1/notifications/push
+[2026-10-21T10:20:34.748Z] [WARN] /api/v2/analytics/track status=401 latency=383ms - Client rate limit or auth challenge at endpoint=/api/v2/analytics/track
+[2026-10-21T10:20:35.405Z] [ERROR] /api/v1/auth/login status=500 latency=1176ms - Internal server exception during processing endpoint=/api/v1/auth/login trace_id=tx-20-35
+[2026-10-21T10:20:36.746Z] [INFO] /api/v2/webhooks/stripe status=404 latency=255ms - Request handled successfully endpoint=/api/v2/webhooks/stripe
+[2026-10-21T10:20:37.451Z] [INFO] /api/v2/inventory/check status=200 latency=1134ms - Request handled successfully endpoint=/api/v2/inventory/check
+[2026-10-21T10:20:38.105Z] [INFO] /api/v2/payments/charge status=200 latency=536ms - Request handled successfully endpoint=/api/v2/payments/charge
+[2026-10-21T10:20:39.224Z] [INFO] /api/v2/orders/create status=200 latency=1112ms - Request handled successfully endpoint=/api/v2/orders/create
+[2026-10-21T10:20:40.123Z] [INFO] /api/v1/reports/export status=200 latency=327ms - Request handled successfully endpoint=/api/v1/reports/export
+[2026-10-21T10:20:41.321Z] [INFO] /api/v2/inventory/check status=200 latency=459ms - Request handled successfully endpoint=/api/v2/inventory/check
+[2026-10-21T10:20:42.130Z] [INFO] /api/v2/inventory/check status=200 latency=185ms - Request handled successfully endpoint=/api/v2/inventory/check
+[2026-10-21T10:20:43.845Z] [INFO] /api/v2/payments/charge status=200 latency=1001ms - Request handled successfully endpoint=/api/v2/payments/charge
+[2026-10-21T10:20:44.304Z] [INFO] /api/v1/auth/refresh status=200 latency=1144ms - Request handled successfully endpoint=/api/v1/auth/refresh
+[2026-10-21T10:20:45.767Z] [INFO] /api/v1/users/profile status=200 latency=1030ms - Request handled successfully endpoint=/api/v1/users/profile
+[2026-10-21T10:20:46.546Z] [ERROR] /api/v1/reports/export status=500 latency=410ms - Internal server exception during processing endpoint=/api/v1/reports/export trace_id=tx-20-46
+[2026-10-21T10:20:47.356Z] [INFO] /api/v2/payments/charge status=200 latency=590ms - Request handled successfully endpoint=/api/v2/payments/charge
+[2026-10-21T10:20:48.502Z] [INFO] /api/v1/auth/refresh status=200 latency=653ms - Request handled successfully endpoint=/api/v1/auth/refresh
+[2026-10-21T10:20:49.269Z] [ERROR] /api/v2/orders/create status=500 latency=1014ms - Internal server exception during processing endpoint=/api/v2/orders/create trace_id=tx-20-49
+[2026-10-21T10:20:50.543Z] [INFO] /api/v2/analytics/track status=200 latency=571ms - Request handled successfully endpoint=/api/v2/analytics/track
+[2026-10-21T10:20:51.935Z] [INFO] /api/v2/inventory/check status=200 latency=799ms - Request handled successfully endpoint=/api/v2/inventory/check
+[2026-10-21T10:20:52.539Z] [INFO] /api/v2/orders/create status=200 latency=780ms - Request handled successfully endpoint=/api/v2/orders/create
+[2026-10-21T10:20:53.747Z] [INFO] /api/v1/auth/refresh status=200 latency=84ms - Request handled successfully endpoint=/api/v1/auth/refresh
+[2026-10-21T10:20:54.623Z] [INFO] /api/v1/users/profile status=200 latency=616ms - Request handled successfully endpoint=/api/v1/users/profile
+[2026-10-21T10:20:55.718Z] [INFO] /api/v1/reports/export status=200 latency=76ms - Request handled successfully endpoint=/api/v1/reports/export
+[2026-10-21T10:20:56.217Z] [WARN] /api/v2/payments/charge status=401 latency=894ms - Client rate limit or auth challenge at endpoint=/api/v2/payments/charge
+[2026-10-21T10:20:57.909Z] [INFO] /api/v2/payments/charge status=200 latency=163ms - Request handled successfully endpoint=/api/v2/payments/charge
+[2026-10-21T10:20:58.320Z] [INFO] /api/v2/inventory/check status=200 latency=658ms - Request handled successfully endpoint=/api/v2/inventory/check
+[2026-10-21T10:20:59.225Z] [INFO] /api/v1/auth/login status=200 latency=37ms - Request handled successfully endpoint=/api/v1/auth/login
+[2026-10-21T10:20:00.834Z] [INFO] /api/v2/inventory/check status=200 latency=1177ms - Request handled successfully endpoint=/api/v2/inventory/check
+[2026-10-21T10:20:01.914Z] [WARN] /api/v2/inventory/check status=429 latency=1165ms - Client rate limit or auth challenge at endpoint=/api/v2/inventory/check
+[2026-10-21T10:20:02.167Z] [INFO] /api/v1/notifications/push status=200 latency=449ms - Request handled successfully endpoint=/api/v1/notifications/push
+[2026-10-21T10:20:03.639Z] [INFO] /api/v2/orders/create status=200 latency=584ms - Request handled successfully endpoint=/api/v2/orders/create
+[2026-10-21T10:20:04.833Z] [ERROR] /api/v2/webhooks/stripe status=500 latency=168ms - Internal server exception during processing endpoint=/api/v2/webhooks/stripe trace_id=tx-20-64
+[2026-10-21T10:20:05.687Z] [INFO] /api/v1/notifications/push status=201 latency=906ms - Request handled successfully endpoint=/api/v1/notifications/push
+[2026-10-21T10:20:06.425Z] [INFO] /api/v2/inventory/check status=200 latency=116ms - Request handled successfully endpoint=/api/v2/inventory/check
+[2026-10-21T10:20:07.921Z] [INFO] /api/v2/analytics/track status=200 latency=577ms - Request handled successfully endpoint=/api/v2/analytics/track
+[2026-10-21T10:20:08.531Z] [INFO] /api/v1/auth/refresh status=200 latency=365ms - Request handled successfully endpoint=/api/v1/auth/refresh
+[2026-10-21T10:20:09.715Z] [INFO] /api/v2/inventory/check status=200 latency=499ms - Request handled successfully endpoint=/api/v2/inventory/check
+[2026-10-21T10:20:10.690Z] [INFO] /api/v1/auth/login status=200 latency=1194ms - Request handled successfully endpoint=/api/v1/auth/login
+[2026-10-21T10:20:11.104Z] [INFO] /api/v2/analytics/track status=200 latency=839ms - Request handled successfully endpoint=/api/v2/analytics/track
+[2026-10-21T10:20:12.137Z] [ERROR] /api/v1/reports/export status=500 latency=95ms - Internal server exception during processing endpoint=/api/v1/reports/export trace_id=tx-20-72
+[2026-10-21T10:20:13.445Z] [INFO] /api/v1/auth/login status=200 latency=209ms - Request handled successfully endpoint=/api/v1/auth/login
+[2026-10-21T10:20:14.949Z] [INFO] /api/v1/notifications/push status=201 latency=577ms - Request handled successfully endpoint=/api/v1/notifications/push
+[2026-10-21T10:20:15.424Z] [INFO] /api/v2/inventory/check status=200 latency=1154ms - Request handled successfully endpoint=/api/v2/inventory/check
+[2026-10-21T10:20:16.893Z] [INFO] /api/v2/inventory/check status=200 latency=111ms - Request handled successfully endpoint=/api/v2/inventory/check
+[2026-10-21T10:20:17.502Z] [INFO] /api/v1/users/profile status=201 latency=945ms - Request handled successfully endpoint=/api/v1/users/profile
+[2026-10-21T10:20:18.605Z] [WARN] /api/v1/auth/refresh status=401 latency=225ms - Client rate limit or auth challenge at endpoint=/api/v1/auth/refresh
+[2026-10-21T10:20:19.129Z] [INFO] /api/v2/orders/create status=200 latency=36ms - Request handled successfully endpoint=/api/v2/orders/create
+[2026-10-21T10:20:20.242Z] [ERROR] /api/v1/auth/refresh status=504 latency=907ms - Internal server exception during processing endpoint=/api/v1/auth/refresh trace_id=tx-20-80
+[2026-10-21T10:20:21.331Z] [INFO] /api/v2/payments/charge status=200 latency=770ms - Request handled successfully endpoint=/api/v2/payments/charge
+[2026-10-21T10:20:22.935Z] [ERROR] /api/v1/reports/export status=502 latency=122ms - Internal server exception during processing endpoint=/api/v1/reports/export trace_id=tx-20-82
+[2026-10-21T10:20:23.365Z] [INFO] /api/v1/auth/login status=200 latency=638ms - Request handled successfully endpoint=/api/v1/auth/login
+[2026-10-21T10:20:24.176Z] [INFO] /api/v1/users/profile status=200 latency=792ms - Request handled successfully endpoint=/api/v1/users/profile
+[2026-10-21T10:20:25.376Z] [ERROR] /api/v2/payments/charge status=500 latency=958ms - Internal server exception during processing endpoint=/api/v2/payments/charge trace_id=tx-20-85
+[2026-10-21T10:20:26.222Z] [INFO] /api/v2/payments/charge status=200 latency=318ms - Request handled successfully endpoint=/api/v2/payments/charge
+[2026-10-21T10:20:27.871Z] [WARN] /api/v2/webhooks/stripe status=429 latency=861ms - Client rate limit or auth challenge at endpoint=/api/v2/webhooks/stripe
+[2026-10-21T10:20:28.752Z] [INFO] /api/v2/analytics/track status=201 latency=1083ms - Request handled successfully endpoint=/api/v2/analytics/track
+[2026-10-21T10:20:29.640Z] [INFO] /api/v2/orders/create status=200 latency=1018ms - Request handled successfully endpoint=/api/v2/orders/create
+[2026-10-21T10:20:30.387Z] [INFO] /api/v2/inventory/check status=400 latency=1003ms - Request handled successfully endpoint=/api/v2/inventory/check
+[2026-10-21T10:20:31.331Z] [INFO] /api/v1/auth/refresh status=200 latency=621ms - Request handled successfully endpoint=/api/v1/auth/refresh
+[2026-10-21T10:20:32.828Z] [INFO] /api/v1/auth/refresh status=200 latency=511ms - Request handled successfully endpoint=/api/v1/auth/refresh
+[2026-10-21T10:20:33.775Z] [INFO] /api/v2/orders/create status=201 latency=168ms - Request handled successfully endpoint=/api/v2/orders/create
+[2026-10-21T10:20:34.606Z] [INFO] /api/v1/auth/login status=200 latency=457ms - Request handled successfully endpoint=/api/v1/auth/login
+[2026-10-21T10:20:35.579Z] [INFO] /api/v1/notifications/push status=200 latency=229ms - Request handled successfully endpoint=/api/v1/notifications/push
+[2026-10-21T10:20:36.448Z] [WARN] /api/v2/orders/create status=401 latency=1095ms - Client rate limit or auth challenge at endpoint=/api/v2/orders/create
+[2026-10-21T10:20:37.626Z] [INFO] /api/v2/inventory/check status=400 latency=653ms - Request handled successfully endpoint=/api/v2/inventory/check
+[2026-10-21T10:20:38.825Z] [INFO] /api/v2/analytics/track status=201 latency=1048ms - Request handled successfully endpoint=/api/v2/analytics/track
+[2026-10-21T10:20:39.208Z] [INFO] /api/v2/payments/charge status=200 latency=759ms - Request handled successfully endpoint=/api/v2/payments/charge
+[2026-10-21T10:20:40.494Z] [INFO] /api/v2/analytics/track status=404 latency=1066ms - Request handled successfully endpoint=/api/v2/analytics/track
+[2026-10-21T10:20:41.307Z] [INFO] /api/v1/notifications/push status=200 latency=584ms - Request handled successfully endpoint=/api/v1/notifications/push
+[2026-10-21T10:20:42.533Z] [INFO] /api/v2/payments/charge status=201 latency=1197ms - Request handled successfully endpoint=/api/v2/payments/charge
+[2026-10-21T10:20:43.763Z] [INFO] /api/v1/auth/refresh status=200 latency=234ms - Request handled successfully endpoint=/api/v1/auth/refresh
+[2026-10-21T10:20:44.862Z] [INFO] /api/v1/auth/refresh status=200 latency=958ms - Request handled successfully endpoint=/api/v1/auth/refresh
+[2026-10-21T10:20:45.291Z] [INFO] /api/v1/users/profile status=200 latency=1102ms - Request handled successfully endpoint=/api/v1/users/profile
+[2026-10-21T10:20:46.563Z] [INFO] /api/v2/inventory/check status=200 latency=1142ms - Request handled successfully endpoint=/api/v2/inventory/check
+[2026-10-21T10:20:47.186Z] [INFO] /api/v2/inventory/check status=200 latency=323ms - Request handled successfully endpoint=/api/v2/inventory/check
+[2026-10-21T10:20:48.506Z] [INFO] /api/v1/reports/export status=200 latency=698ms - Request handled successfully endpoint=/api/v1/reports/export
+[2026-10-21T10:20:49.154Z] [INFO] /api/v2/analytics/track status=200 latency=215ms - Request handled successfully endpoint=/api/v2/analytics/track
+[2026-10-21T10:20:50.150Z] [INFO] /api/v1/notifications/push status=201 latency=880ms - Request handled successfully endpoint=/api/v1/notifications/push
+[2026-10-21T10:20:51.298Z] [INFO] /api/v1/users/profile status=200 latency=376ms - Request handled successfully endpoint=/api/v1/users/profile
+[2026-10-21T10:20:52.708Z] [INFO] /api/v1/users/profile status=200 latency=1025ms - Request handled successfully endpoint=/api/v1/users/profile
+[2026-10-21T10:20:53.631Z] [INFO] /api/v1/notifications/push status=200 latency=117ms - Request handled successfully endpoint=/api/v1/notifications/push
+[2026-10-21T10:20:54.761Z] [ERROR] /api/v2/orders/create status=500 latency=464ms - Internal server exception during processing endpoint=/api/v2/orders/create trace_id=tx-20-114
+[2026-10-21T10:20:55.217Z] [WARN] /api/v1/auth/login status=429 latency=1193ms - Client rate limit or auth challenge at endpoint=/api/v1/auth/login
+[2026-10-21T10:20:56.372Z] [INFO] /api/v2/orders/create status=200 latency=221ms - Request handled successfully endpoint=/api/v2/orders/create
+[2026-10-21T10:20:57.382Z] [WARN] /api/v2/orders/create status=429 latency=843ms - Client rate limit or auth challenge at endpoint=/api/v2/orders/create
+[2026-10-21T10:20:58.501Z] [INFO] /api/v1/notifications/push status=200 latency=564ms - Request handled successfully endpoint=/api/v1/notifications/push
+[2026-10-21T10:20:59.607Z] [INFO] /api/v2/orders/create status=200 latency=431ms - Request handled successfully endpoint=/api/v2/orders/create
+[2026-10-21T10:20:00.455Z] [INFO] /api/v1/users/profile status=201 latency=604ms - Request handled successfully endpoint=/api/v1/users/profile
+[2026-10-21T10:20:01.851Z] [INFO] /api/v1/auth/login status=200 latency=1045ms - Request handled successfully endpoint=/api/v1/auth/login
+[2026-10-21T10:20:02.817Z] [INFO] /api/v2/webhooks/stripe status=200 latency=640ms - Request handled successfully endpoint=/api/v2/webhooks/stripe
+[2026-10-21T10:20:03.973Z] [INFO] /api/v2/orders/create status=200 latency=157ms - Request handled successfully endpoint=/api/v2/orders/create
+[2026-10-21T10:20:04.270Z] [INFO] /api/v2/payments/charge status=200 latency=947ms - Request handled successfully endpoint=/api/v2/payments/charge
+[2026-10-21T10:20:05.245Z] [INFO] /api/v1/auth/login status=201 latency=891ms - Request handled successfully endpoint=/api/v1/auth/login
+[2026-10-21T10:20:06.442Z] [INFO] /api/v1/auth/login status=200 latency=555ms - Request handled successfully endpoint=/api/v1/auth/login
+[2026-10-21T10:20:07.178Z] [INFO] /api/v2/payments/charge status=201 latency=34ms - Request handled successfully endpoint=/api/v2/payments/charge
+[2026-10-21T10:20:08.708Z] [ERROR] /api/v2/inventory/check status=500 latency=17ms - Internal server exception during processing endpoint=/api/v2/inventory/check trace_id=tx-20-128
+[2026-10-21T10:20:09.600Z] [INFO] /api/v2/orders/create status=200 latency=107ms - Request handled successfully endpoint=/api/v2/orders/create
+[2026-10-21T10:20:10.938Z] [INFO] /api/v1/auth/login status=200 latency=610ms - Request handled successfully endpoint=/api/v1/auth/login
+[2026-10-21T10:20:11.955Z] [INFO] /api/v2/orders/create status=200 latency=357ms - Request handled successfully endpoint=/api/v2/orders/create
+[2026-10-21T10:20:12.873Z] [INFO] /api/v2/payments/charge status=400 latency=219ms - Request handled successfully endpoint=/api/v2/payments/charge
+[2026-10-21T10:20:13.411Z] [INFO] /api/v2/inventory/check status=200 latency=733ms - Request handled successfully endpoint=/api/v2/inventory/check
+[2026-10-21T10:20:14.658Z] [INFO] /api/v1/users/profile status=201 latency=534ms - Request handled successfully endpoint=/api/v1/users/profile
+[2026-10-21T10:20:15.473Z] [INFO] /api/v2/analytics/track status=200 latency=737ms - Request handled successfully endpoint=/api/v2/analytics/track
+[2026-10-21T10:20:16.408Z] [WARN] /api/v2/inventory/check status=429 latency=1006ms - Client rate limit or auth challenge at endpoint=/api/v2/inventory/check
+[2026-10-21T10:20:17.215Z] [INFO] /api/v1/users/profile status=201 latency=57ms - Request handled successfully endpoint=/api/v1/users/profile
+[2026-10-21T10:20:18.251Z] [INFO] /api/v1/notifications/push status=404 latency=305ms - Request handled successfully endpoint=/api/v1/notifications/push
+[2026-10-21T10:20:19.465Z] [INFO] /api/v2/analytics/track status=200 latency=1197ms - Request handled successfully endpoint=/api/v2/analytics/track
+[2026-10-21T10:20:20.858Z] [INFO] /api/v1/notifications/push status=200 latency=197ms - Request handled successfully endpoint=/api/v1/notifications/push
+[2026-10-21T10:20:21.298Z] [INFO] /api/v1/notifications/push status=200 latency=575ms - Request handled successfully endpoint=/api/v1/notifications/push
+[2026-10-21T10:20:22.998Z] [WARN] /api/v1/reports/export status=429 latency=935ms - Client rate limit or auth challenge at endpoint=/api/v1/reports/export
+[2026-10-21T10:20:23.997Z] [INFO] /api/v1/reports/export status=200 latency=729ms - Request handled successfully endpoint=/api/v1/reports/export
+[2026-10-21T10:20:24.439Z] [INFO] /api/v1/notifications/push status=200 latency=580ms - Request handled successfully endpoint=/api/v1/notifications/push
+[2026-10-21T10:20:25.416Z] [INFO] /api/v2/orders/create status=200 latency=1080ms - Request handled successfully endpoint=/api/v2/orders/create
+[2026-10-21T10:20:26.818Z] [WARN] /api/v2/inventory/check status=401 latency=266ms - Client rate limit or auth challenge at endpoint=/api/v2/inventory/check
+[2026-10-21T10:20:27.543Z] [INFO] /api/v2/analytics/track status=200 latency=725ms - Request handled successfully endpoint=/api/v2/analytics/track
+[2026-10-21T10:20:28.395Z] [ERROR] /api/v1/auth/refresh status=500 latency=1036ms - Internal server exception during processing endpoint=/api/v1/auth/refresh trace_id=tx-20-148
+[2026-10-21T10:20:29.801Z] [INFO] /api/v2/payments/charge status=200 latency=322ms - Request handled successfully endpoint=/api/v2/payments/charge
+[2026-10-21T10:20:30.635Z] [INFO] /api/v1/users/profile status=200 latency=348ms - Request handled successfully endpoint=/api/v1/users/profile
