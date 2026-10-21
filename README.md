@@ -7,6 +7,8 @@
 
 ##  GIỚI THIỆU DỰ ÁN
 
+Hệ thống của nhóm là **Software Engineering & Reliability Agent (SE-Agent)** — một Agent kỹ sư phần mềm tự động có khả năng ghi nhớ quy ước kiến trúc bền vững qua nhiều phiên làm việc (Persistent Memory), duy trì trạng thái gỡ lỗi liên tục bằng nén ngữ cảnh chọn lọc (Context Compaction), và tự viết code phân tích dữ liệu lớn trên máy chủ nhằm tối ưu chi phí token (Code Mode).
+
 Dự án cung cấp bộ khung kiến trúc (Boilerplate / Starter Scaffolding) gồm các interface, type hints và mô tả đặc tả chi tiết để **5 thành viên trong Nhóm 07 code song song độc lập**, giải quyết 3 thử thách kiến trúc của hệ thống AI Agent:
 1. **Challenge A (Bắt buộc):** Persistent Memory (Lưu trữ quy ước dự án qua các session và giải quyết xung đột khi quy ước thay đổi).
 2. **Challenge B1 (Bắt buộc):** Context Compaction (Nén session dài thành Structured Checkpoint 7 trường thông tin cốt lõi mà vẫn giữ trọn vẹn ngữ cảnh suy luận).
