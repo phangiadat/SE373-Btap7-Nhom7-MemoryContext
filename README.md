@@ -5,7 +5,9 @@
 
 ---
 
-## 📌 GIỚI THIỆU DỰ ÁN
+##  GIỚI THIỆU DỰ ÁN
+
+Hệ thống của nhóm là **Software Engineering & Reliability Agent (SE-Agent)** — một Agent kỹ sư phần mềm tự động có khả năng ghi nhớ quy ước kiến trúc bền vững qua nhiều phiên làm việc (Persistent Memory), duy trì trạng thái gỡ lỗi liên tục bằng nén ngữ cảnh chọn lọc (Context Compaction), và tự viết code phân tích dữ liệu lớn trên máy chủ nhằm tối ưu chi phí token (Code Mode).
 
 Dự án cung cấp bộ khung kiến trúc (Boilerplate / Starter Scaffolding) gồm các interface, type hints và mô tả đặc tả chi tiết để **5 thành viên trong Nhóm 07 code song song độc lập**, giải quyết 3 thử thách kiến trúc của hệ thống AI Agent:
 1. **Challenge A (Bắt buộc):** Persistent Memory (Lưu trữ quy ước dự án qua các session và giải quyết xung đột khi quy ước thay đổi).
@@ -14,7 +16,7 @@ Dự án cung cấp bộ khung kiến trúc (Boilerplate / Starter Scaffolding) 
 
 ---
 
-## 📂 CẤU TRÚC THƯ MỤC DỰ ÁN
+##  CẤU TRÚC THƯ MỤC DỰ ÁN
 
 ```text
 bt_buoi07_memory_context/
@@ -43,13 +45,13 @@ bt_buoi07_memory_context/
 
 ---
 
-## 👥 BẢNG PHÂN CÔNG THÀNH VIÊN NHÓM 07
+##  BẢNG PHÂN CÔNG THÀNH VIÊN NHÓM 07
 
 Chi tiết xem tại tài liệu [docs/TEAM_WORKFLOW_AND_SPEC.md](docs/TEAM_WORKFLOW_AND_SPEC.md).
 
 | Thành viên | Họ và Tên | Vai trò | File phụ trách | Nhánh Git |
 | :---: | :--- | :--- | :--- | :--- |
-| **TV 1** | **Phan Gia Đạt** | Leader, Core Agent & Mock Data | `src/core_agent.py`, `src/mock_env.py` | `feat/dat-core-agent` |
+| **TV 1** | **Gia Đạt** | Leader, Core Agent & Mock Data | `src/core_agent.py`, `src/mock_env.py` | `feat/dat-core-agent` |
 | **TV 2** | **Gia Bảo** | Memory Storage & Conflict Curation | `src/memory_store.py`, `data/project_memory.json` | `feat/bao-memory-store` |
 | **TV 3** | **Huy Bình** | Memory Injection & Challenge A Demo | `src/memory_injector.py`, `demo_challenge_a.py` | `feat/binh-challenge-a` |
 | **TV 4** | **Huy Phát** | Compaction Pipeline & Challenge B1 Demo | `src/compactor.py`, `demo_challenge_b1.py` | `feat/phat-challenge-b1` |
@@ -57,7 +59,7 @@ Chi tiết xem tại tài liệu [docs/TEAM_WORKFLOW_AND_SPEC.md](docs/TEAM_WORK
 
 ---
 
-## 🛠 HƯỚNG DẪN CÀI ĐẶT MÔI TRƯỜNG
+##  HƯỚNG DẪN CÀI ĐẶT MÔI TRƯỜNG
 
 ### 1. Khởi tạo Virtual Environment
 Mở terminal tại thư mục dự án:
@@ -86,7 +88,7 @@ cp .env.example .env
 
 ---
 
-## 🚀 LỆNH CHẠY KIỂM THỬ KHI HOÀN THÀNH
+##  LỆNH CHẠY KIỂM THỬ KHI HOÀN THÀNH
 
 Khi từng thành viên hoàn thiện phần code của mình, chạy kiểm chứng bằng các lệnh sau:
 - **Kiểm chứng Thử thách A (Huy Bình & Gia Bảo):** `python demo_challenge_a.py`
@@ -95,9 +97,9 @@ Khi từng thành viên hoàn thiện phần code của mình, chạy kiểm ch�
 
 ---
 
-## 🤝 QUY ƯỚC LÀM VIỆC TRÊN GIT
+##  QUY ƯỚC LÀM VIỆC TRÊN GIT
 
-1. Leader (Gia Đạt) khởi tạo repository trên nhánh `main`.
+1. Đạt khởi tạo repository trên nhánh `main`.
 2. Mỗi thành viên checkout nhánh riêng tương ứng (`feat/dat-core-agent`, `feat/bao-memory-store`, v.v.).
 3. **Chỉ chỉnh sửa các file thuộc phân công của mình** để tránh Merge Conflict.
 4. Đọc kỹ Hợp đồng giao tiếp (Interface Contracts) trong [docs/TEAM_WORKFLOW_AND_SPEC.md](docs/TEAM_WORKFLOW_AND_SPEC.md) trước khi code.
