@@ -1,39 +1,37 @@
-"""
-Persistent Memory Storage and Conflict Curation Module.
-Phụ trách: Thành viên 2 - Gia Bảo.
+# LUỒNG HOẠT ĐỘNG CỦA FILE:
+# 1. MemoryItem giữ nguyên schema của hợp đồng giao tiếp cho từng quy ước.
+# 2. MemoryStore đọc mảng JSON từ file; nếu file chưa có thì tạo file chứa [].
+# 3. Khi ghi, store lưu toàn bộ MemoryItem vào file tạm cùng thư mục rồi thay
+#    file chính để tránh file JSON bị ghi dở khi chương trình dừng đột ngột.
+# 4. Các hàm truy vấn chỉ trả về quy ước active hoặc superseded, có thể lọc topic.
+# 5. Khi có quy ước mới, store tạo ID UUID mới, chuyển mọi bản active cùng topic
+#    sang superseded, trỏ superseded_by tới ID mới, rồi thêm bản active mới.
+# 6. Tất cả thay đổi được ghi xuống JSON; MemoryStore ở phiên sau đọc lại file.
+# 7. reset_memory() ghi [] để có thể chạy lại demo từ đầu.
 
-MỤC TIÊU CỦA GIA BẢO:
-1. Thiết kế Pydantic Schema cho Memory Item:
-   - id: str (mã định danh quy ước)
-   - topic: str (chủ đề: 'database', 'auth', 'language'...)
-   - rule: str (nội dung quy ước)
-   - status: Literal['active', 'superseded', 'wontfix']
-   - source: str (nguồn gốc quy ước)
-   - updated_at: str (thời gian cập nhật ISO-8601)
-   - superseded_by: Optional[str] (id quy ước mới thay thế nếu bị superseded)
-2. Quản lý đọc/ghi file data/project_memory.json:
-   - load_all() -> List[MemoryItem]
-   - save_all(items: List[MemoryItem]) -> None
-   - get_active_memories(topic: Optional[str]) -> List[MemoryItem]
-   - get_superseded_memories(topic: Optional[str]) -> List[MemoryItem]
-3. Thuật toán giải quyết xung đột (Conflict Resolution):
-   - update_rule_with_conflict_resolution(topic, new_rule, source) -> (new_item, superseded_items)
-"""
+"""Lưu quy ước dự án bằng JSON và giữ lịch sử khi quy ước thay đổi."""
 
 from __future__ import annotations
 
 import json
+import os
+import tempfile
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import List, Literal, Optional, Tuple
+from uuid import uuid4
+
 from pydantic import BaseModel, Field
 
 from src.config import MEMORY_FILE_PATH
+
 
 MemoryStatus = Literal["active", "superseded", "wontfix"]
 
 
 class MemoryItem(BaseModel):
     """Mô hình dữ liệu cho một quy ước kiến trúc trong persistent memory."""
+
     id: str = Field(..., description="Định danh duy nhất của memory (ví dụ: mem_001)")
     topic: str = Field(..., description="Chủ đề của quy ước (ví dụ: 'database', 'auth')")
     rule: str = Field(..., description="Nội dung quy ước chi tiết")
@@ -44,51 +42,68 @@ class MemoryItem(BaseModel):
 
 
 class MemoryStore:
-    """
-    Quản lý lưu trữ và xử lý xung đột quy ước trên file JSON.
-    """
+    """Đọc, ghi và cập nhật quy ước trong một file JSON."""
 
     def __init__(self, file_path: Path = MEMORY_FILE_PATH) -> None:
         self.file_path: Path = file_path
 
     def load_all(self) -> List[MemoryItem]:
-        """
-        Đọc toàn bộ danh sách MemoryItem từ file JSON.
-        
-        TODO: [Thành viên 2]
-        - Kiểm tra file tồn tại chưa, nếu chưa thì tạo file với mảng rỗng [].
-        - Đọc nội dung JSON và parse thành danh sách MemoryItem.
-        """
-        raise NotImplementedError("TODO: [Thành viên 2] Triển khai hàm load_all()")
+        """Đọc JSON thành MemoryItem; tạo kho rỗng nếu file chưa tồn tại."""
+        if not self.file_path.exists():
+            self.save_all([])
+            return []
+
+        # utf-8-sig đọc được cả file UTF-8 thường lẫn file mẫu có BOM của repo.
+        with self.file_path.open("r", encoding="utf-8-sig") as memory_file:
+            data = json.load(memory_file)
+        return [MemoryItem.model_validate(item) for item in data]
 
     def save_all(self, items: List[MemoryItem]) -> None:
-        """
-        Ghi danh sách MemoryItem xuống file JSON.
-        
-        TODO: [Thành viên 2]
-        - Ghi đè danh sách items dưới dạng JSON có format thụt lề (indent=2).
-        """
-        raise NotImplementedError("TODO: [Thành viên 2] Triển khai hàm save_all()")
+        """Ghi toàn bộ danh sách bằng cách thay file JSON sau khi ghi xong."""
+        self.file_path.parent.mkdir(parents=True, exist_ok=True)
+        temporary_path: Optional[Path] = None
+
+        try:
+            # File tạm cùng thư mục để os.replace thay file đích trong một bước.
+            with tempfile.NamedTemporaryFile(
+                mode="w",
+                encoding="utf-8",
+                dir=self.file_path.parent,
+                prefix=f".{self.file_path.name}.",
+                suffix=".tmp",
+                delete=False,
+            ) as temporary_file:
+                temporary_path = Path(temporary_file.name)
+                json.dump(
+                    [item.model_dump() for item in items],
+                    temporary_file,
+                    ensure_ascii=False,
+                    indent=2,
+                )
+                temporary_file.flush()
+                os.fsync(temporary_file.fileno())
+
+            os.replace(temporary_path, self.file_path)
+        finally:
+            # Nếu ghi/thay file lỗi, không để lại file tạm chứa dữ liệu dở.
+            if temporary_path is not None:
+                temporary_path.unlink(missing_ok=True)
 
     def get_active_memories(self, topic: Optional[str] = None) -> List[MemoryItem]:
-        """
-        Lọc danh sách các memory đang có status == 'active'.
-        
-        TODO: [Thành viên 2]
-        - Lấy toàn bộ items từ load_all().
-        - Lọc các items có status == 'active'.
-        - Nếu có truyền topic thì lọc thêm theo topic tương ứng.
-        """
-        raise NotImplementedError("TODO: [Thành viên 2] Triển khai hàm get_active_memories()")
+        """Lấy các quy ước đang dùng, hoặc chỉ các quy ước thuộc topic."""
+        return [
+            item
+            for item in self.load_all()
+            if item.status == "active" and (topic is None or item.topic == topic)
+        ]
 
     def get_superseded_memories(self, topic: Optional[str] = None) -> List[MemoryItem]:
-        """
-        Lọc danh sách các memory đã bị thay thế (status == 'superseded').
-        
-        TODO: [Thành viên 2]
-        - Lọc các items có status == 'superseded'.
-        """
-        raise NotImplementedError("TODO: [Thành viên 2] Triển khai hàm get_superseded_memories()")
+        """Lấy lịch sử quy ước đã bị thay thế, có thể lọc theo topic."""
+        return [
+            item
+            for item in self.load_all()
+            if item.status == "superseded" and (topic is None or item.topic == topic)
+        ]
 
     def update_rule_with_conflict_resolution(
         self,
@@ -96,22 +111,30 @@ class MemoryStore:
         new_rule: str,
         source: str,
     ) -> Tuple[MemoryItem, List[MemoryItem]]:
-        """
-        Cập nhật quy ước mới với cơ chế Conflict Resolution:
-        
-        TODO: [Thành viên 2]
-        1. Tìm tất cả memory đang 'active' có cùng topic.
-        2. Đánh dấu các memory cũ đó thành 'superseded', cập nhật thời gian và gán superseded_by.
-        3. Tạo MemoryItem mới có status='active'.
-        4. Ghi toàn bộ thay đổi xuống file JSON.
-        5. Trả về tuple: (new_memory, list_of_superseded_memories).
-        """
-        raise NotImplementedError("TODO: [Thành viên 2] Triển khai hàm update_rule_with_conflict_resolution()")
+        """Lưu quy ước mới và chuyển mọi bản active cùng topic vào lịch sử."""
+        items = self.load_all()
+        updated_at = datetime.now(timezone.utc).isoformat()
+        new_item = MemoryItem(
+            id=str(uuid4()),
+            topic=topic,
+            rule=new_rule,
+            status="active",
+            source=source,
+            updated_at=updated_at,
+        )
+
+        superseded_items: List[MemoryItem] = []
+        for item in items:
+            if item.topic == topic and item.status == "active":
+                item.status = "superseded"
+                item.updated_at = updated_at
+                item.superseded_by = new_item.id
+                superseded_items.append(item)
+
+        items.append(new_item)
+        self.save_all(items)
+        return new_item, superseded_items
 
     def reset_memory(self) -> None:
-        """
-        Xóa trắng dữ liệu trong kho memory về [] để phục vụ chạy lại test/demo.
-        
-        TODO: [Thành viên 2] Ghi mảng rỗng [] xuống self.file_path.
-        """
-        raise NotImplementedError("TODO: [Thành viên 2] Triển khai hàm reset_memory()")
+        """Xóa dữ liệu của lần chạy trước để bắt đầu demo lại."""
+        self.save_all([])
