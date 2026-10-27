@@ -1,1 +1,38 @@
-﻿[]
+[
+  {
+    "id": "687ebd93-c626-47c7-8669-a465dfc31099",
+    "topic": "database",
+    "rule": "PostgreSQL with Prisma ORM",
+    "status": "active",
+    "source": "Session 1 - Kiến trúc sư trưởng",
+    "updated_at": "2026-10-24T03:58:34.281377+00:00",
+    "superseded_by": null
+  },
+  {
+    "id": "b6369b14-8081-4d68-b43a-346bc07eab3f",
+    "topic": "language",
+    "rule": "TypeScript strict mode",
+    "status": "active",
+    "source": "Session 1 - Nhóm phát triển Core",
+    "updated_at": "2026-10-24T03:58:34.294652+00:00",
+    "superseded_by": null
+  },
+  {
+    "id": "5a262359-73ec-408f-8ec4-48c799b36fee",
+    "topic": "auth",
+    "rule": "JWT tokens with 15m expiration",
+    "status": "superseded",
+    "source": "Session 1 - Chính sách bảo mật v1",
+    "updated_at": "2026-10-24T03:58:34.764688+00:00",
+    "superseded_by": "702193f3-9124-435d-aca2-7184f7658425"
+  },
+  {
+    "id": "702193f3-9124-435d-aca2-7184f7658425",
+    "topic": "auth",
+    "rule": "HTTP-only Secure Session Cookies with Redis store",
+    "status": "active",
+    "source": "Session 2 - Quyết định họp Kỹ thuật v2",
+    "updated_at": "2026-10-24T03:58:34.764688+00:00",
+    "superseded_by": null
+  }
+]

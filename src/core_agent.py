@@ -2,22 +2,23 @@
 Core Agent Loop and Token Tracking Module.
 Phụ trách: Thành viên 1 - Phan Gia Đạt (Leader).
 
-MỤC TIÊU CỦA PHAN GIA ĐẠT:
-1. Hoàn thiện hàm estimate_tokens(text: str) -> int:
-   - Ước tính số token của chuỗi (dùng tiktoken hoặc bộ đếm xấp xỉ).
-2. Hoàn thiện lớp CoreAgent:
-   - Quản lý danh sách tin nhắn: messages (List[AgentMessage]).
-   - Hàm get_current_input_tokens() -> int: Tính tổng input tokens hiện tại trong messages.
-   - Hàm add_message(role, content, name) -> AgentMessage: Thêm tin nhắn vào context.
-   - Hàm execute_tool(tool_name, **kwargs) -> str: Dispatch thực thi tool được đăng ký.
-   - Hàm step(user_input, simulate_llm_response) -> str: Vòng lặp 1 turn của Agent và cập nhật usage.
+TÁC DỤNG VÀ Ý NGHĨA KIẾN TRÚC:
+Module này là "Trái tim" của hệ thống Agentic AI (Core Execution Engine):
+1. Quản lý trạng thái đàm thoại (Conversation State): Duy trì danh sách tin nhắn tuần tự (messages)
+   tuân thủ kiến trúc Prompt Assembly theo chuẩn của các mô hình hiện đại.
+2. Giám sát ngân sách Token (Token Budget Observability): Đo lường chính xác 'usage.input_tokens'
+   sau mỗi lượt (Turn) để phát hiện sớm nguy cơ tràn ngữ cảnh (Context Rot & Bloat) trước khi gọi LLM.
+3. Cơ chế kích hoạt công cụ (Tool Dispatcher): Kết nối linh hoạt giữa Agent Planner và môi trường
+   thực thi bên ngoài (read_file, run_tests).
 """
 
 from __future__ import annotations
 
 from typing import Any, Callable, Dict, List, Optional
 from pydantic import BaseModel, Field
+
 from src.config import config
+from src.mock_env import mock_read_file, mock_run_tests
 
 
 class AgentMessage(BaseModel):
@@ -39,12 +40,17 @@ class TokenUsage(BaseModel):
 def estimate_tokens(text: str) -> int:
     """
     Ước tính số lượng token của chuỗi văn bản.
-    
-    TODO: [Thành viên 1]
-    - Sử dụng thư viện tiktoken nếu có (encoding cl100k_base).
-    - Hoặc giải thuật ước lượng xấp xỉ (~4 ký tự/token).
+    Sử dụng tiktoken (cl100k_base) nếu đã cài đặt, hoặc giải thuật xấp xỉ (~4 ký tự/token).
     """
-    raise NotImplementedError("TODO: [Thành viên 1] Triển khai hàm estimate_tokens()")
+    if not text:
+        return 0
+    try:
+        import tiktoken
+        enc = tiktoken.get_encoding("cl100k_base")
+        return len(enc.encode(text))
+    except Exception:
+        # Heuristic chuẩn công nghiệp: 1 token ~= 4 ký tự tiếng Anh/code
+        return max(1, len(text) // 4)
 
 
 class CoreAgent:
@@ -63,7 +69,11 @@ class CoreAgent:
         self.messages: List[AgentMessage] = [
             AgentMessage(role="system", content=system_prompt)
         ]
-        self.tools: Dict[str, Callable[..., str]] = tools or {}
+        # Đăng ký mặc định các mock tools để phục vụ bài B1 & B2
+        self.tools: Dict[str, Callable[..., str]] = tools if tools is not None else {
+            "read_file": mock_read_file,
+            "run_tests": mock_run_tests,
+        }
         self.token_budget_limit: int = token_budget_limit
         self.total_usage = TokenUsage()
         self.history_usages: List[TokenUsage] = []
@@ -71,44 +81,72 @@ class CoreAgent:
     def get_current_input_tokens(self) -> int:
         """
         Tính toán tổng số input_tokens của toàn bộ tin nhắn hiện có trong self.messages.
-        
-        TODO: [Thành viên 1]
-        - Duyệt qua từng msg trong self.messages.
-        - Gọi estimate_tokens(msg.content) và cộng dồn lại.
+        Phản ánh đúng khối lượng ngữ cảnh mà LLM sẽ phải nạp vào attention layer nếu gọi API.
         """
-        raise NotImplementedError("TODO: [Thành viên 1] Triển khai hàm get_current_input_tokens()")
+        return sum(estimate_tokens(msg.content) for msg in self.messages)
 
     def add_message(self, role: str, content: str, name: Optional[str] = None) -> AgentMessage:
-        """
-        Thêm một tin nhắn mới vào danh sách self.messages.
-        
-        TODO: [Thành viên 1]
-        - Khởi tạo AgentMessage.
-        - Append vào self.messages và trả về message đó.
-        """
-        raise NotImplementedError("TODO: [Thành viên 1] Triển khai hàm add_message()")
+        """Thêm một tin nhắn mới vào danh sách self.messages và trả về tin nhắn đó."""
+        msg = AgentMessage(
+            role=role,
+            content=content,
+            name=name,
+            metadata={"estimated_tokens": estimate_tokens(content)},
+        )
+        self.messages.append(msg)
+        return msg
 
     def execute_tool(self, tool_name: str, **kwargs) -> str:
         """
-        Thực thi tool được chỉ định trong self.tools.
-        
-        TODO: [Thành viên 1]
-        - Kiểm tra tool_name có trong self.tools không.
-        - Gọi hàm tương ứng và trả về kết quả dạng str.
-        - Xử lý exception nếu có lỗi phát sinh.
+        Thực thi tool được chỉ định trong self.tools và trả về output kết quả.
+        Bắt lỗi an toàn để tránh làm đổ vỡ vòng lặp Agent nếu tool ném Exception.
         """
-        raise NotImplementedError("TODO: [Thành viên 1] Triển khai hàm execute_tool()")
+        if tool_name not in self.tools:
+            return f"Error: Tool '{tool_name}' is not registered in agent toolset."
+        try:
+            tool_fn = self.tools[tool_name]
+            result = tool_fn(**kwargs)
+            return str(result)
+        except Exception as e:
+            return f"Error executing tool '{tool_name}': {type(e).__name__} - {str(e)}"
 
     def step(self, user_input: str, simulate_llm_response: Optional[str] = None) -> str:
         """
         Thực hiện một lượt hội thoại (Turn):
-        
-        TODO: [Thành viên 1]
-        1. Thêm tin nhắn user vào self.messages.
-        2. Đo input_tokens trước khi gọi model bằng self.get_current_input_tokens().
-        3. Lấy phản hồi từ LLM (hoặc dùng simulate_llm_response nếu đang chạy giả lập).
-        4. Thêm tin nhắn assistant vào self.messages.
-        5. Cập nhật TokenUsage vào self.history_usages và self.total_usage.
-        6. Trả về nội dung phản hồi của assistant.
+        1. Thêm user message vào context.
+        2. Đo lường chính xác input_tokens hiện thời trước khi gửi tới LLM.
+        3. Sinh phản hồi của Assistant (hoặc dùng simulate_llm_response khi chạy test giả lập).
+        4. Thêm assistant message vào context.
+        5. Cập nhật và lưu vết thống kê TokenUsage.
         """
-        raise NotImplementedError("TODO: [Thành viên 1] Triển khai hàm step()")
+        # Bước 1: Ghi nhận tin nhắn người dùng
+        self.add_message("user", user_input)
+
+        # Bước 2: Đo lường input_tokens
+        curr_input_tokens = self.get_current_input_tokens()
+
+        # Bước 3: Xác định phản hồi của Assistant
+        if simulate_llm_response is not None:
+            assistant_reply = simulate_llm_response
+        else:
+            assistant_reply = (
+                f"[CoreAgent] Acknowledged input: '{user_input[:60]}...'. "
+                f"Current context contains {curr_input_tokens} input tokens across {len(self.messages)} messages."
+            )
+
+        # Bước 4: Ghi nhận phản hồi vào ngữ cảnh
+        self.add_message("assistant", assistant_reply)
+        output_tokens = estimate_tokens(assistant_reply)
+
+        # Bước 5: Cập nhật chỉ số token tiêu thụ
+        turn_usage = TokenUsage(
+            input_tokens=curr_input_tokens,
+            output_tokens=output_tokens,
+            total_tokens=curr_input_tokens + output_tokens,
+        )
+        self.history_usages.append(turn_usage)
+        self.total_usage.input_tokens += turn_usage.input_tokens
+        self.total_usage.output_tokens += turn_usage.output_tokens
+        self.total_usage.total_tokens += turn_usage.total_tokens
+
+        return assistant_reply
